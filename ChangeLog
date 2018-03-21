@@ -1,3 +1,71 @@
+Telize 2.0.0 (2018-03-15)
+
+- Switch to using GeoIP2/GeoLite2 databases
+- The 'region_code' field is now in the ISO-3166-2 format for all countries
+- The 'organization' field now only contains organization name, Autonomous
+  System Numbers are now provided as a separate 'asn' field in numeric value
+- Timezone offsets ('offset' field) are now generated as numeric values
+  and in seconds
+- The 'area_code' and 'dma_code' are not provided anymore
+- Drop dependency on the Lua iconv module, GeoIP2/GeoLite2 databases are
+  encoded as UTF-8
+- Drop timezone.conf, GeoIP2/GeoLite2 databases contain time zones for each
+  location
+- Rename telize to telize.conf
+- Update timezones list
+- Add support for CORS in the 'jsonip' endpoint
+- Rename the 'geoip' endpoint to 'location'
+- Add Cache-Control header in the 'jsonip' endpoint as well
+
+
+
+Telize 1.07 (2016-11-22)
+
+- The timezone offset generator has been rewritten in Lua
+- Relicensed under the BSD 2-Clause license
+- Use Lua to set additional headers and drop dependency on the
+  'ngx_headers_more' module
+- Use Lua to echo IP address in the 'ip' endpoint and drop dependency on
+  the 'ngx_echo' module
+- Use 'content_by_lua_block' directive instead of 'content_by_lua'
+- Various documentation updates
+
+
+
+Telize 1.06 (2016-02-04)
+
+- Prefixing all country codes with carets to prevent wrong matching
+
+
+
+Telize 1.05 (2016-01-05)
+
+- Regression fix: organization name was not correctly converted to UTF-8
+
+
+
+Telize 1.04 (2015-11-10)
+
+- Do not attempt to split GeoIP org field into ASN and ISP, return the raw
+  organization string instead
+
+
+
+Telize 1.03 (2015-10-27)
+
+- Fix region and ISP name encoding (Thanks to Ludovic Robinot)
+- Removed legacy Debian automatic install script
+- Check for invalid IP addresses before attempting to validate arguments
+- Convert latitude and longitude to numeric values only after all arguments
+  have been validated
+- The 'jsonip' endpoint do not use the internal 'jsonify' endpoint anymore
+- Various documentation updates
+- The 'localize' internal endpoint is not needed anymore, and Telize now
+  requires Nginx 1.7.4+
+- Splitting GeoIP organization string into ASN and ISP using Lua
+
+
+
 Telize 1.02 (2014-09-01)
 
 - Refactored Lua code (Thanks to Jon Nalley)
@@ -15,7 +83,7 @@ Telize 1.01 (2013-10-11)
 - Adding support for Timezones
 - Adding support for GeoIP ASN database
 - Enforcing strictly defined URL endpoints
-- Prevent logging of internal redirects 
+- Prevent logging of internal redirects
 
 
 
